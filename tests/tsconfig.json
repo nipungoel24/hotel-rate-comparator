@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "@hotel/contracts": ["packages/contracts/src/index.ts"],
+      "@hotel/contracts/hotels": ["packages/contracts/src/hotels.ts"],
+      "@hotel/domain": ["packages/domain/src/index.ts"]
+    }
+  },
+  "include": [
+    "unit/**/*.ts",
+    "suppliers/**/*.ts",
+    "../apps/suppliers/src/**/*.ts",
+    "../packages/contracts/src/**/*.ts",
+    "../packages/domain/src/**/*.ts",
+    "activity/**/*.ts",
+    "workflow/**/*.ts",
+    "integration/**/*.ts",
+    "api/**/*.ts",
+    "../apps/worker/src/**/*.ts",
+    "../apps/api/src/**/*.ts"
+  ]
+}

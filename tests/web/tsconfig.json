@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "paths": {
+      "@hotel/contracts": ["packages/contracts/src/index.ts"],
+      "@hotel/contracts/hotels": ["packages/contracts/src/hotels.ts"],
+      "@hotel/domain": ["packages/domain/src/index.ts"],
+      "@/*": ["apps/web/src/*"],
+      "morphicons/react": ["tests/web/morphicons-stub.tsx"]
+    },
+    "baseUrl": "../.."
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../../apps/web/src/**/*.ts",
+    "../../apps/web/src/**/*.tsx"
+  ]
+}
