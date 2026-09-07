@@ -1,7 +1,14 @@
 # Implementation memory
 
-- Last updated: 2026-09-07, Phase 4 handoff.
-- Approval: Phase 0 approved; Phase 1, Phase 2, Phase 3 and Phase 4 completed and verified. Phase 4 awaits approval; Phase 5 not authorized.
+- Last updated: 2026-09-07, final submission state.
+- Phases 0 through 7 all completed and verified. No phase awaiting authorization.
+- Repository has commits pushed to main. Final HEAD: f31336614390e31d4d854ade5d1891ea2a47968e.
+- GitHub Actions final verification green (run 34153330422): all stages passed.
+- Jest final total: 259 tests, 15 suites, 0 skipped. Playwright final total: 12/12.
+- --forceExit removed from package.json (verified unnecessary; Jest exits naturally).
+- CI Jest step uses NODE_OPTIONS --max-old-space-size=4096 to prevent OOM.
+- Temporal wrapper (scripts/temporal.mjs) forwards SIGTERM to the native child binary.
+- Repository visibility: public. Reviewer collaborator invitation not yet sent (manual action required).
 - Completed: Phase 1 baseline re-verified (npm ci, format, lint, typecheck, build, live smoke against native Windows Temporal). Phase 2 implemented: hotel/price/search contracts with Zod validation, pure money normalization and comparison domain (integer cents, A-wins-ties, unsorted-safe global minimum), typed supplier-result discriminated union, aggregate outcome mapping, deterministic mock supplier endpoints for A and B with allowlisted scenario headers, per-request attempt-based fail-twice, disconnect-safe delay/hang handling, fixture inventories per city, Jest unit + Supertest supplier suites. All Phase 2 acceptance criteria verified by execution.
 - Files changed this task: packages/contracts/src/config.ts (moved infra config), packages/contracts/src/hotels.ts (new), packages/contracts/src/index.ts (type-only hotels re-export), packages/contracts/hotels.d.ts (new subpath type stub), packages/contracts/package.json (zod dep, exports map), packages/domain/src/money.ts|suppliers.ts|compare.ts|aggregate.ts|index.ts (new), apps/suppliers/src/fixtures.ts|scenarios.ts|routes/hotels.ts (new), apps/suppliers/src/app.ts|server.ts (routes + controls option), scripts/tasks.mjs (typecheck emits shared packages first), scripts/smoke.mjs (waits for worker readiness signal), jest.config.mjs (new), tests/tsconfig.json (new), tests/unit/domain/*.test.ts (new, 3 files), tests/unit/contracts/hotels.test.ts (new), tests/suppliers/hotels.test.ts|isolation.test.ts|price-shapes.test.ts (new), package.json + lockfile (jest 30.5.1, ts-jest 29.4.12, supertest 7.2.2, @types, zod 4.5.4), .env.example (scenario-controls note), Architecture.md (tests/suppliers + script), Phases.md (status lines), Memory.md.
 - Active files: none.
@@ -76,10 +83,10 @@ Final local gates on the final state: npm run check exit 0 (format/lint/build/ty
 
 Known limitations: mock suppliers only; local Temporal dev server; no production deployment; human pixel review of screenshots pending; Playwright runs headless Chromium only.
 
-Git: branch main, 123 files committed across 8 logical commits; origin https://github.com/nipungoel24/hotel-rate-comparator.git (private); local and remote HEAD match at c59f915.
+Git: branch main, 123+ files committed across multiple logical commits; origin https://github.com/nipungoel24/hotel-rate-comparator (public); local and remote HEAD match at f313366.
 
 ## Phase 7 completed (2026-09-07)
 
 Phase 7 (GitHub submission) completed. Repository renamed to hotel-rate-comparator without damage; no stale path references found; no machine-specific paths in source. Pre-commit audit clear: no secrets, no large commit-eligible files, .gitignore correct. Final local gate green: npm run check exit 0 (format/lint/build/typecheck, 15 suites/259 tests, compiled smoke). Constructed 8 logical commits with conventional messages; no fake dates. Pushed main to origin without force. Remote was confirmed empty before push. CI workflow (.github/workflows/ci.yml) is on remote and triggers on push to main; actual GitHub Actions execution status could not be verified without authenticated API access (gh CLI unavailable, no GITHUB_TOKEN). Reviewer invitation to kaushal@tripare.com requires authenticated GitHub API access (gh CLI or personal token) which is not available in this environment; the user must send the collaborator invitation manually via the GitHub web UI.
 
-Final local HEAD: c59f915. Repository URL: https://github.com/nipungoel24/hotel-rate-comparator.git. Visibility: private.
+Final local HEAD: f313366. Repository URL: https://github.com/nipungoel24/hotel-rate-comparator. Visibility: public.

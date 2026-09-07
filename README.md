@@ -196,8 +196,8 @@ shadcn/ui components (Radix primitives) for the form/result primitives; Morphico
 - The five-second budget is a logical cutoff; process suspension, clock skew or infrastructure outages add physical elapsed time. Assumes synchronized clocks on one host.
 - Direct development path promises disconnect cancellation; proxy buffering and browser/API crashes make it best-effort (finite Workflow/HTTP deadlines bound the work regardless).
 - Playwright runs headless Chromium only; human pixel-level visual review of the captured QA screenshots (`artifacts/qa/`) is welcome, while automated design-token/geometry/contrast assertions cover the measurable checks.
-- CI workflow is prepared but has not executed on GitHub yet — that happens with the Phase 7 push.
+- GitHub Actions CI has executed successfully on `ubuntu-latest` (Node 22.20.0): install, pinned Temporal CLI setup (SHA256-verified), static checks, build, all Jest suites, compiled Temporal smoke against a real server, and Playwright Chromium full-stack E2E. Final verified run: [34153330422](https://github.com/nipungoel24/hotel-rate-comparator/actions/runs/34153330422).
 
 ## Submission / reviewer notes
 
-This is a technical assignment demonstrating Temporal orchestration, not a production travel product. There is no booking, payment or live inventory. Prices are demo data from local mock suppliers. Reviewer access to the repository is arranged as a separate final step.
+This is a technical assignment demonstrating Temporal orchestration, not a production travel product. There is no booking, payment or live inventory. Prices are demo data from local mock suppliers. The repository is public at https://github.com/nipungoel24/hotel-rate-comparator. Reviewer collaborator invitation for kaushal@tripare.com requires manual action via the GitHub web UI (no `gh` CLI or token available in this environment).
