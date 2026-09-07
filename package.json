@@ -26,7 +26,7 @@
     "build": "node scripts/tasks.mjs build",
     "test:unit": "jest --config jest.config.mjs --selectProjects unit",
     "test:suppliers": "jest --config jest.config.mjs --selectProjects suppliers",
-    "test": "jest --config jest.config.mjs --runInBand",
+    "test": "jest --config jest.config.mjs --runInBand --forceExit",
     "test:activity": "jest --config jest.config.mjs --runInBand --selectProjects activity",
     "test:api": "jest --config jest.config.mjs --runInBand --selectProjects api",
     "test:web": "jest --config jest.config.mjs --runInBand --selectProjects web",

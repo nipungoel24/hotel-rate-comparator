@@ -35,6 +35,8 @@ jobs:
 
       - name: Jest suites (unit, suppliers, activity, workflow, integration, api, web)
         run: npm test
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Compiled smoke against a real Temporal server
         shell: bash
