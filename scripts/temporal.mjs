@@ -44,6 +44,9 @@ const child = spawn(
 // A terminal Ctrl+C reaches the native child in the same Windows console.
 // Do not use child.kill('SIGINT'): Windows turns it into forcible termination.
 process.on('SIGINT', () => {});
+process.on('SIGTERM', () => {
+  if (child.exitCode === null) child.kill('SIGTERM');
+});
 child.on('error', (error) => {
   console.error(error);
   process.exitCode = 1;
