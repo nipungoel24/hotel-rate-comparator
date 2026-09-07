@@ -1,0 +1,12 @@
+node_modules
+**/dist
+.tools
+.temporal
+artifacts
+package-lock.json
+MasterPrompt.md
+Plan.md
+ShortStartPrompt.md
+Sources.md
+START-HERE.md
+

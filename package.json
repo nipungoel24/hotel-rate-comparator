@@ -1,0 +1,59 @@
+{
+  "name": "hotel-rate-comparator",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": "22.20.0",
+    "npm": "10.9.3"
+  },
+  "packageManager": "npm@10.9.3",
+  "scripts": {
+    "setup:temporal": "node scripts/install-temporal.mjs",
+    "dev:temporal": "node scripts/temporal.mjs",
+    "dev:suppliers": "node --env-file-if-exists=.env apps/suppliers/dist/server.js",
+    "dev:worker": "node --env-file-if-exists=.env apps/worker/dist/worker.js",
+    "dev:api": "node --env-file-if-exists=.env apps/api/dist/server.js",
+    "dev:web": "node --env-file-if-exists=.env scripts/web.mjs",
+    "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "node scripts/tasks.mjs typecheck",
+    "build": "node scripts/tasks.mjs build",
+    "test:unit": "jest --config jest.config.mjs --selectProjects unit",
+    "test:suppliers": "jest --config jest.config.mjs --selectProjects suppliers",
+    "test": "jest --config jest.config.mjs --runInBand",
+    "test:activity": "jest --config jest.config.mjs --runInBand --selectProjects activity",
+    "test:api": "jest --config jest.config.mjs --runInBand --selectProjects api",
+    "test:web": "jest --config jest.config.mjs --runInBand --selectProjects web",
+    "test:workflow": "jest --config jest.config.mjs --runInBand --selectProjects workflow",
+    "test:integration": "jest --config jest.config.mjs --runInBand --selectProjects integration",
+    "test:e2e": "playwright test",
+    "test:smoke": "node --env-file-if-exists=.env scripts/smoke.mjs",
+    "check": "node scripts/tasks.mjs check"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/jest": "30.0.0",
+    "@types/node": "22.20.1",
+    "@types/supertest": "7.2.1",
+    "eslint": "10.10.0",
+    "jest": "30.5.1",
+    "jest-environment-jsdom": "30.0.1",
+    "jsdom": "29.1.1",
+    "prettier": "3.9.6",
+    "supertest": "7.2.2",
+    "ts-jest": "29.4.12",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.69.0"
+  }
+}
