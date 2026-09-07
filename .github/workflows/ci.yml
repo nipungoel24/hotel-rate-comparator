@@ -46,7 +46,7 @@ jobs:
           TEMPORAL_PID=$!
           node scripts/wait-temporal.mjs
           npm run test:smoke
-          kill "$TEMPORAL_PID" 2>/dev/null || true
+          kill -- -$TEMPORAL_PID 2>/dev/null || true
           wait "$TEMPORAL_PID" 2>/dev/null || true
 
       - name: Install Playwright Chromium (with system dependencies)
