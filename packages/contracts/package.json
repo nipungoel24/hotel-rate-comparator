@@ -1,0 +1,23 @@
+{
+  "name": "@hotel/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./hotels": {
+      "types": "./dist/hotels.d.ts",
+      "require": "./dist/hotels.js",
+      "default": "./dist/hotels.js"
+    }
+  },
+  "dependencies": {
+    "zod": "4.5.4"
+  }
+}
