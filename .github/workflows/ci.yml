@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies (reproducible)
+        run: npm ci
+
+      - name: Install pinned Temporal CLI (verified release)
+        run: node scripts/install-temporal.mjs
+
+      - name: Static checks (format, lint, typecheck incl. e2e)
+        run: |
+          npm run format:check
+          npm run lint
+          npm run typecheck
+
+      - name: Build all workspaces
+        run: npm run build
+
+      - name: Jest suites (unit, suppliers, activity, workflow, integration, api, web)
+        run: npm test
+
+      - name: Compiled smoke against a real Temporal server
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          node scripts/temporal.mjs > artifacts/temporal-ci.log 2>&1 &
+          TEMPORAL_PID=$!
+          node scripts/wait-temporal.mjs
+          npm run test:smoke
+          kill "$TEMPORAL_PID" 2>/dev/null || true
+          wait "$TEMPORAL_PID" 2>/dev/null || true
+
+      - name: Install Playwright Chromium (with system dependencies)
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser end-to-end suite (full real stack)
+        run: npm run test:e2e
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
